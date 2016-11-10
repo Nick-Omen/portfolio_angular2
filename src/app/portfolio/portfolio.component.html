@@ -1,0 +1,20 @@
+<div class="mdl-grid portfolio-max-width">
+    <div class="mdl-cell mdl-cell--12-col">
+        <button
+                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                [attr.disabled]="button.loading ? 'disabled' : null"
+                (click)="toggleCards()">
+            {{button.title}}
+        </button>
+    </div>
+    <app-portfolio-thumb
+            *ngFor="let portfolioThumb of portfolioThumbs"
+            class="mdl-cell mdl-cell--2-col"
+            [portfolioThumb]="portfolioThumb"></app-portfolio-thumb>
+</div>
+<div *ngIf="portfolioItems.length" class="mdl-grid portfolio-max-width">
+    <app-portfolio-card
+            *ngFor="let portfolio of portfolioItems"
+            class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card"
+            [portfolio]="portfolio"></app-portfolio-card>
+</div>
