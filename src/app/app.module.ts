@@ -11,7 +11,10 @@ import {PortfolioCardComponent} from './portfolio-card/portfolio-card.component'
 import {HomeComponent} from "./home/home.component";
 import {AppService} from "./app.service";
 import {PortfolioService} from "./portfolio/portfolio.service";
-import {PortfolioThumbComponent} from './portfolio-thumb/portfolio-thumb.component';
+import {FooterComponent} from './footer/footer.component';
+import {PortfolioFilterComponent} from './portfolio-filter/portfolio-filter.component';
+import {PortfolioFilterService} from "./portfolio-filter/portfolio-filter.service";
+import {PortfolioFilterPipe} from './portfolio-filter/portfolio-filter.pipe';
 
 @NgModule({
     declarations: [
@@ -19,10 +22,12 @@ import {PortfolioThumbComponent} from './portfolio-thumb/portfolio-thumb.compone
         NavigationComponent,
         PortfolioComponent,
         AboutComponent,
-        PortfolioThumbComponent,
         PortfolioCardComponent,
         PortfolioDetailComponent,
         HomeComponent,
+        FooterComponent,
+        PortfolioFilterComponent,
+        PortfolioFilterPipe,
     ],
     imports: [
         BrowserModule,
@@ -53,6 +58,7 @@ import {PortfolioThumbComponent} from './portfolio-thumb/portfolio-thumb.compone
     providers: [
         AppService,
         PortfolioService,
+        PortfolioFilterService,
     ],
     bootstrap: [AppComponent]
 })

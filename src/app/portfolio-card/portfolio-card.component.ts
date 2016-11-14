@@ -9,11 +9,13 @@ import {Portfolio} from "../portfolio/portfolio";
 export class PortfolioCardComponent implements OnInit {
 
     @Input('portfolio') portfolio: Portfolio;
+    cardPreview: string = '';
 
     constructor() {
     }
 
     ngOnInit() {
+        this.cardPreview = this.portfolio.thumbnail ? this.portfolio.thumbnail : this.portfolio.logo;
     }
 
 }

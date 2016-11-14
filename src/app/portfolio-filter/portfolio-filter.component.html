@@ -1,0 +1,13 @@
+<ul class="list list--inline">
+    <li [ngClass]="{'list__item': true, 'is-active': technologiesSelected.length === 0}"
+        [attr.data-tech]="null"
+        (click)="toggleTech($event)">
+        Show all
+    </li>
+    <li *ngFor="let tech of technologies"
+        [ngClass]="{'list__item': true, 'is-active': technologiesSelected.indexOf(tech.name) >= 0}"
+        [attr.data-tech]="tech.name"
+        (click)="toggleTech($event)">
+        {{tech.name}}
+    </li>
+</ul>

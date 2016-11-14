@@ -1,5 +1,9 @@
 <div class="mdl-card__media">
-    <img class="article-image" [attr.src]="portfolio.thumbnail ? portfolio.thumbnail : portfolio.logo" [attr.title]="portfolio.title">
+    <img class="article-image"
+         [ngStyle]="{'background-image': 'url('+cardPreview+')'}"
+         [ngClass]="{'logo': !portfolio.thumbnail}"
+         [attr.src]="'/assets/images/blank.png'"
+         [attr.title]="portfolio.title">
 </div>
 <div class="mdl-card__title">
     <h2 class="mdl-card__title-text">{{portfolio.title}}</h2>

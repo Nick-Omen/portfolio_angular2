@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Http} from "@angular/http";
-import {PortfolioThumb, Portfolio} from './portfolio';
+import {Portfolio, PortfolioDetails} from './portfolio';
 import {AppService} from '../app.service';
 
 import 'rxjs/add/operator/toPromise'
@@ -9,44 +9,39 @@ import 'rxjs/add/operator/toPromise'
 export class PortfolioService {
 
     url: string = 'works';
-    portfolioThumbs: PortfolioThumb[];
-    portfolioById: Portfolio[] = [];
+    portfolioItems: Portfolio[] = [];
+    portfolioDetails: PortfolioDetails[] = [];
 
     constructor(private globals: AppService,
                 private http: Http) {
     }
 
-    getPortfolioThumbs(): Promise<PortfolioThumb[]> {
+    getPortfolioItems(): Promise<Portfolio[]> {
 
-        if(this.portfolioThumbs && this.portfolioThumbs.length !== 0) {
+        if (this.portfolioItems && this.portfolioItems.length !== 0) {
 
-            return new Promise(resolve => resolve(this.portfolioThumbs as PortfolioThumb[]));
+            return new Promise(resolve => resolve(this.portfolioItems as Portfolio[]));
         }
 
-        const url = `${this.globals.apiUrl}/${this.url}-thumb`;
+        const url = `${this.globals.apiUrl}/${this.url}/`;
 
         return this.http.get(url)
             .toPromise()
             .then(res => {
-                this.portfolioThumbs = res.json() as PortfolioThumb[];
-                return res.json() as PortfolioThumb[];
+                this.portfolioItems = res.json() as Portfolio[];
+                return res.json() as Portfolio[];
             });
     }
 
-    getPortfolioById(id: number): Promise<Portfolio> {
+    getPortfolioDetails(slug: any): Promise<PortfolioDetails> {
 
-        if(this.portfolioById.length !== 0 && this.portfolioById[id]) {
-
-            return new Promise(resolve => resolve(this.portfolioById[id] as Portfolio));
-        }
-
-        const url = `${this.globals.apiUrl}/${this.url}/${id}`;
+        const url = `${this.globals.apiUrl}/${this.url}/${slug}/`;
 
         return this.http.get(url)
             .toPromise()
             .then(res => {
-                this.portfolioById[id] = res.json() as Portfolio;
-                return res.json() as Portfolio;
+                this.portfolioDetails[slug] = res.json() as PortfolioDetails;
+                return res.json() as PortfolioDetails;
             });
     }
 }

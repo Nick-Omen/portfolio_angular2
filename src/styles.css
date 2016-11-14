@@ -25,7 +25,7 @@
 }
 
 .is-compact .portfolio-logo-row {
-    min-height: auto;
+    min-height: 0;
 }
 
 .portfolio-logo {
@@ -65,7 +65,7 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    background-color: rgb(255,64,129);
+    background-color: rgb(255,171,64);
     left: 15%;
 }
 
@@ -155,3 +155,7 @@ footer {
     background-size: cover;
 }
 
+.mdl-mini-footer {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}

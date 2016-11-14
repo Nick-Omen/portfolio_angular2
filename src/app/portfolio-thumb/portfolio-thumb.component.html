@@ -1,7 +1,0 @@
-<div class="thumb" data-id="{{portfolioThumb.id}}">
-    <img *ngIf="portfolioThumb.logo.length"
-         class="thumb__image"
-         [attr.src]="portfolioThumb.logo"
-         [attr.title]="portfolioThumb.title">
-    <span *ngIf="!portfolioThumb.logo.length" class="thumb__text">{{portfolioThumb.title}}</span>
-</div>
