@@ -15,6 +15,8 @@ import {FooterComponent} from './footer/footer.component';
 import {PortfolioFilterComponent} from './portfolio-filter/portfolio-filter.component';
 import {PortfolioFilterService} from "./portfolio-filter/portfolio-filter.service";
 import {PortfolioFilterPipe} from './portfolio-filter/portfolio-filter.pipe';
+import { CountPipe } from './count.pipe';
+import { ChipComponent } from './chip/chip.component';
 
 @NgModule({
     declarations: [
@@ -28,6 +30,8 @@ import {PortfolioFilterPipe} from './portfolio-filter/portfolio-filter.pipe';
         FooterComponent,
         PortfolioFilterComponent,
         PortfolioFilterPipe,
+        CountPipe,
+        ChipComponent,
     ],
     imports: [
         BrowserModule,

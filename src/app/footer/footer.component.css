@@ -1,6 +1,4 @@
 :host {
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     flex: 0 0 auto;
 }

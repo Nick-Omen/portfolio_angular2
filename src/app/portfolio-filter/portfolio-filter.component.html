@@ -1,13 +1,25 @@
-<ul class="list list--inline">
-    <li [ngClass]="{'list__item': true, 'is-active': technologiesSelected.length === 0}"
-        [attr.data-tech]="null"
-        (click)="toggleTech($event)">
-        Show all
+<ul class="list list--inline list--unstyled">
+    <li class="list__item">
+        <button class="mdl-button va-top button-margin"
+                (click)="toggleTechnologies()">
+            {{buttonTitle}}
+        </button>
     </li>
-    <li *ngFor="let tech of technologies"
-        [ngClass]="{'list__item': true, 'is-active': technologiesSelected.indexOf(tech.name) >= 0}"
-        [attr.data-tech]="tech.name"
-        (click)="toggleTech($event)">
-        {{tech.name}}
+    <li class="list__item inline" *ngIf="!technologiesHidden">
+        <ul class="list inline">
+            <li class="list__item">
+                <app-chip [isActive]="technologiesSelected.length === 0"
+                          [isContact]="false"
+                          [name]="'Show all'"
+                          (stateChange)="onTechnologyFilter($event)"></app-chip>
+            </li>
+            <li *ngFor="let tech of technologies"
+                class="list__item">
+                <app-chip [isActive]="technologiesSelected.indexOf(tech.name) >= 0"
+                          [isDisabled]="technologiesSelected.length > 0 && portfolioCount === 0 && technologiesSelected.indexOf(tech.name) < 0"
+                          [name]="tech.name"
+                          (stateChange)="onTechnologyFilter($event)"></app-chip>
+            </li>
+        </ul>
     </li>
 </ul>

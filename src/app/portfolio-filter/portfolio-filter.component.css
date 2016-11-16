@@ -1,20 +1,19 @@
-.list {
-    margin: 0;
-    padding: 0;
+.chip-label {
+    vertical-align: top;
+    font-size: 13px;
+    line-height: 32px;
+    display: inline-block;
+    margin: 2px 8px 8px 0;
 }
-.list__item {
-    list-style-type: none;
-    cursor: pointer;
-    padding: 8px 16px;
-    border-radius: 4px;
+
+.va-top {
+    vertical-align: top;
+}
+
+.button-margin {
     margin-right: 8px;
 }
-.list__item:last-child {
-    margin-right: 0;
-}
-.list__item.is-active {
-    background: rgba(0, 0, 0, .15);
-}
-.list--inline .list__item {
-    display: inline-block;
+
+.inline {
+    display: inline !important;
 }

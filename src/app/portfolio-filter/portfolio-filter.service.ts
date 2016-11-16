@@ -19,6 +19,6 @@ export class PortfolioFilterService {
 
         return this.http.get(url)
             .toPromise()
-            .then(res => res.json() as Technology[])
+            .then(res => res.json() as Technology[]);
     }
 }

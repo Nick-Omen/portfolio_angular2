@@ -1,0 +1,16 @@
+.mdl-chip {
+    cursor: pointer;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    transition: box-shadow 180ms;
+}
+
+.mdl-chip.is-active {
+    transition: box-shadow 180ms;
+}
+
+.mdl-chip.is-disabled {
+    cursor: not-allowed;
+    background: #cccccc;
+    color: rgba(0, 0, 0, .54);
+}
