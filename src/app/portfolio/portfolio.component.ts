@@ -14,6 +14,7 @@ export class PortfolioComponent implements OnInit {
     portfolioItems: Portfolio[] = [];
     technologiesFilterBy: Array<string> = [];
     portfolioItemCount: number = 0;
+    loadErrorMessage: any;
     filterPortfolioPipe: PortfolioFilterPipe = new PortfolioFilterPipe();
 
     constructor(private ps: PortfolioService) {
@@ -24,7 +25,8 @@ export class PortfolioComponent implements OnInit {
             .then(portfolioItems => {
                 this.portfolioItems = portfolioItems;
                 this.portfolioItemCount = portfolioItems.length
-            });
+            })
+            .catch(res => this.loadErrorMessage = "Can't load from API. Please try again later.");
     }
 
     showThumbsLazy(): void {

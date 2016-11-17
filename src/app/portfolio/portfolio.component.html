@@ -1,5 +1,5 @@
 <div class="mdl-grid portfolio-max-width">
-    <app-portfolio-filter
+    <app-portfolio-filter *ngIf="portfolioItemCount !== 0 && technologiesFilterBy.length !== 0"
             [portfolioCount]="portfolioItemCount"
             (onTechnologySelect)="handleTechnologyFilter($event)"
             class="mdl-cell mdl-cell--12-col"></app-portfolio-filter>
@@ -9,7 +9,8 @@
 
     <div *ngIf="portfolioItemCount === 0 && technologiesFilterBy.length === 0"
          class="mdl-cell mdl-cell--12-col">
-        <p>Loading portfolio...</p>
+        <p *ngIf="!loadErrorMessage">Loading portfolio...</p>
+        <p *ngIf="loadErrorMessage">{{loadErrorMessage}}</p>
     </div>
 
     <div *ngIf="portfolioItemCount === 0 && technologiesFilterBy.length !== 0"
