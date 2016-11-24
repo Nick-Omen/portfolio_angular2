@@ -2,69 +2,50 @@ import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
 import {HttpModule} from "@angular/http";
 import {RouterModule} from "@angular/router";
+
 import {AppComponent} from "./app.component";
-import {NavigationComponent} from './navigation/navigation.component';
-import {PortfolioComponent} from './portfolio/portfolio.component';
-import {AboutComponent} from './about/about.component';
-import {PortfolioDetailComponent} from './portfolio-detail/portfolio-detail.component';
-import {PortfolioCardComponent} from './portfolio-card/portfolio-card.component';
-import {HomeComponent} from "./home/home.component";
+import {AppRoutes} from "./app.routes";
+import {AdminModule} from "./admin/admin.module";
 import {AppService} from "./app.service";
-import {PortfolioService} from "./portfolio/portfolio.service";
-import {FooterComponent} from './footer/footer.component';
-import {PortfolioFilterComponent} from './portfolio-filter/portfolio-filter.component';
-import {PortfolioFilterService} from "./portfolio-filter/portfolio-filter.service";
-import {PortfolioFilterPipe} from './portfolio-filter/portfolio-filter.pipe';
-import { CountPipe } from './count.pipe';
-import { ChipComponent } from './chip/chip.component';
+import {HomeComponent} from "./home/home.component";
+
+import {WelcomeComponent} from './welcome/welcome.component';
+import {AboutComponent} from './about/about.component';
+
+import {HeaderComponent} from './blocks/header/header.component';
+import {NavigationComponent} from './blocks/navigation/navigation.component';
+import {SocialComponent} from './blocks/social/social.component';
+import {AboutCardComponent} from './blocks/about-card/about-card.component';
+import {AboutTableComponent} from './blocks/about-table/about-table.component';
+import {SkillsComponent} from './skills/skills.component';
+import {SkillComponent} from './components/skill/skill.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         NavigationComponent,
-        PortfolioComponent,
-        AboutComponent,
-        PortfolioCardComponent,
-        PortfolioDetailComponent,
         HomeComponent,
-        FooterComponent,
-        PortfolioFilterComponent,
-        PortfolioFilterPipe,
-        CountPipe,
-        ChipComponent,
+        HeaderComponent,
+        WelcomeComponent,
+        AboutComponent,
+        SocialComponent,
+        AboutCardComponent,
+        AboutTableComponent,
+        SkillsComponent,
+        SkillComponent,
     ],
     imports: [
         BrowserModule,
         HttpModule,
-        RouterModule.forRoot([
-            {
-                path: 'about',
-                component: AboutComponent,
-                data: {}
-            },
-            {
-                path: 'works/:name',
-                component: PortfolioDetailComponent,
-                data: {}
-            },
-            {
-                path: 'works',
-                component: PortfolioComponent,
-                data: {}
-            },
-            {
-                path: '',
-                component: HomeComponent,
-                data: {}
-            }
-        ])
+        RouterModule.forRoot(AppRoutes),
+        AdminModule,
     ],
     providers: [
         AppService,
-        PortfolioService,
-        PortfolioFilterService,
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [
+        AppComponent
+    ]
 })
 export class AppModule {
 }

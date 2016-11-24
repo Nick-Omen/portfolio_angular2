@@ -5,24 +5,136 @@
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//code.getmdl.io/">
 
-    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
-    <title>Frontend</title>
+    <title>Nikita Nikitin | Web developer</title>
+
     <base href="/">
 
-    <meta name="description" content="">
-
-    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.grey-orange.min.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
 
-<app-root>Loading...</app-root>
+<app-root>
+    <style>
+        .spinner {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-top: -32px;
+            margin-left: -32px;
+            -webkit-animation: rotator 1.4s linear infinite;
+            animation: rotator 1.4s linear infinite;
+        }
+
+        @-webkit-keyframes rotator {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(270deg);
+                transform: rotate(270deg);
+            }
+        }
+
+        @keyframes rotator {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(270deg);
+                transform: rotate(270deg);
+            }
+        }
+        .path {
+            stroke-dasharray: 187;
+            stroke-dashoffset: 0;
+            -webkit-transform-origin: center;
+            -ms-transform-origin: center;
+            transform-origin: center;
+            -webkit-animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+            animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+        }
+
+        @-webkit-keyframes colors {
+            0% {
+                stroke: #4285F4;
+            }
+            25% {
+                stroke: #DE3E35;
+            }
+            50% {
+                stroke: #F7C223;
+            }
+            75% {
+                stroke: #1B9A59;
+            }
+            100% {
+                stroke: #4285F4;
+            }
+        }
+
+        @keyframes colors {
+            0% {
+                stroke: #4285F4;
+            }
+            25% {
+                stroke: #DE3E35;
+            }
+            50% {
+                stroke: #F7C223;
+            }
+            75% {
+                stroke: #1B9A59;
+            }
+            100% {
+                stroke: #4285F4;
+            }
+        }
+        @-webkit-keyframes dash {
+            0% {
+                stroke-dashoffset: 187;
+            }
+            50% {
+                stroke-dashoffset: 46.75;
+                -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+            }
+            100% {
+                stroke-dashoffset: 187;
+                -webkit-transform: rotate(450deg);
+                transform: rotate(450deg);
+            }
+        }
+        @keyframes dash {
+            0% {
+                stroke-dashoffset: 187;
+            }
+            50% {
+                stroke-dashoffset: 46.75;
+                -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+            }
+            100% {
+                stroke-dashoffset: 187;
+                -webkit-transform: rotate(450deg);
+                transform: rotate(450deg);
+            }
+        }
+    </style>
+    <div id="overflowed">
+        <svg class="spinner" width="64px" height="64px" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <circle class="path" fill="none" stroke-width="5" stroke-linecap="round" cx="32" cy="32" r="30"></circle>
+        </svg>
+    </div>
+</app-root>
 
 <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&lang=en">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700,900&lang=en">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </body>
 </html>

@@ -1,0 +1,14 @@
+@import "../../../assets/sass/variables"
+@import "../../../assets/sass/mixins"
+
+.pf-social
+  display: inline-block
+  width: 32px
+  height: 32px
+  background: #ccc
+  transition: $animation-time--fast $animation-effect--in
+  +shadow-2dp()
+
+  &:hover
+    transition: $animation-time--fast $animation-effect--out
+    +focus-shadow()

@@ -1,0 +1,9 @@
+<div *ngIf="authService.isAuthenticated()" class="mdl-grid">
+    <div class="mdl-cell mdl-cell--4-col">
+        <app-admin-navigation></app-admin-navigation>
+    </div>
+    <div class="mdl-cell mdl-cell--8-col">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+<app-auth *ngIf="!authService.isAuthenticated()"></app-auth>

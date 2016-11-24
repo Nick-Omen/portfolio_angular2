@@ -1,0 +1,34 @@
+<button (click)="changeTab('signup')">Sign Up</button>
+<button (click)="changeTab('signin')">Sign In</button>
+<div [ngSwitch]="formTab">
+    <form [formGroup]="form"
+          (submit)="formSubmit($event)"
+          *ngSwitchCase="'signup'">
+        Sign Up
+        <hr>
+        <label>Username:
+            <input type="text" formControlName="username">
+        </label>
+        <br>
+        <label>Password:
+            <input type="password" formControlName="password">
+        </label>
+        <br>
+        <button type="submit" [attr.disabled]="form.valid ? null : 'disabled'">Submit</button>
+    </form>
+    <form [formGroup]="form"
+          (submit)="formSubmit($event)"
+          *ngSwitchCase="'signin'">
+        Sign In
+        <hr>
+        <label>Username:
+            <input type="text" formControlName="username">
+        </label>
+        <br>
+        <label>Password:
+            <input type="password" formControlName="password">
+        </label>
+        <br>
+        <button type="submit" [attr.disabled]="form.valid ? null : 'disabled'">Submit</button>
+    </form>
+</div>

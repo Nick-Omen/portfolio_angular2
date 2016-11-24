@@ -1,0 +1,55 @@
+<div class="pf-container">
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--12-col">
+            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp pf-table">
+                <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Name</th>
+                    <th>Skill level</th>
+                    <th>Experience</th>
+                    <th colspan="2">
+                        <button *ngIf="languages.length !== 0"
+                                type="button"
+                                (click)="reloadLanguages()">refresh data</button>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngIf="languages.length === 0">
+                    <td colspan="5">
+                        No languages created.
+                    </td>
+                </tr>
+                <tr *ngFor="let lang of languages" [attr.data-id]="lang.id">
+                    <td class="mdl-data-table__cell--non-numeric">{{lang.name}}</td>
+                    <td>{{lang.skill_level}}</td>
+                    <td>{{lang.experience | experience}}</td>
+                    <td><button type="button" (click)="editLanguage(lang, lang.id)">Edit</button></td>
+                    <td><button type="button" (click)="removeLanguage(lang.id)">Remove</button></td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr *ngIf="!addItem">
+                    <td colspan="5">
+                        <button type="button" (click)="triggerForm()">Add item</button>
+                    </td>
+                </tr>
+                <tr *ngIf="addItem">
+                    <td colspan="5">
+                        <form [formGroup]="form" (submit)="editItem ? modifyLanguage($event) : addLanguage($event)">
+                            <input placeholder="Language name" type="text" formControlName="name">
+                            <input placeholder="Skill level" type="number" min="0" max="100" formControlName="skill_level">
+                            <input title="Experience" type="text" formControlName="experience" value="01-01-2015">
+                            <button type="submit" [attr.disabled]="form.valid ? null : 'disabled'">Submit</button>
+                            <button type="button" (click)="closeForm()">Cancel</button>
+                        </form>
+                        <pre>
+                            {{form.value | json}}
+                        </pre>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

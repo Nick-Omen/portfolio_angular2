@@ -1,14 +1,14 @@
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header mdl-layout__header--waterfall portfolio-header">
-        <div class="mdl-layout__header-row portfolio-logo-row">
-            <div class="portfolio-logo"></div>
-        </div>
-        <app-navigation class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only"></app-navigation>
-    </header>
-    <app-navigation class="mdl-layout__drawer mdl-layout--small-screen-only"></app-navigation>
-    <main class="mdl-layout__content">
+<div class="mdl-layout mdl-js-layout">
 
-        <router-outlet></router-outlet>
-        <app-footer class="mdl-mini-footer"></app-footer>
+    <app-header class="mdl-layout__header mdl-layout__header--scroll pf-layout__header"></app-header>
+
+    <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+        <span class="mdl-layout-title">Title</span>
+        <app-navigation class="mdl-navigation"></app-navigation>
+    </div>
+    <main class="mdl-layout__content">
+        <div class="page-content">
+            <router-outlet></router-outlet>
+        </div>
     </main>
 </div>

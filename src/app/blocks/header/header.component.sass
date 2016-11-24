@@ -1,0 +1,26 @@
+@import "../../../assets/sass/variables"
+
+$menu-height: 80px
+
+.pf-layout__header
+  background: #fff
+  height: $menu-height
+
+.pf-layout__header-row
+  height: $menu-height
+  padding: 0 16px
+
+.pf-navigation
+  .mdl-navigation__link
+    height: $menu-height
+    line-height: $menu-height
+    font-weight: bold
+    text-transform: uppercase
+    color: $navigation-link-color
+
+    &.is-active
+      color: $text-color-primary
+
+.pf-logo
+  width: auto
+  height: 48px
