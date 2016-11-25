@@ -1,18 +1,36 @@
-<form [formGroup]="form"
+<form class="pf-signup-form pf-card-form mdl-card mdl-shadow--2dp"
+      [formGroup]="form"
       (submit)="formSubmit($event)">
-    Sign Up <a routerLink="/authorization/login">I already have an account</a>
-    <hr>
-    <label>Username:
-        <input type="text" formControlName="username">
-    </label>
-    <br>
-    <label>Email:
-        <input type="email" formControlName="email">
-    </label>
-    <br>
-    <label>Password:
-        <input type="password" formControlName="password">
-    </label>
-    <br>
-    <button type="submit" [attr.disabled]="form.valid ? null : 'disabled'">Submit</button>
+    <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">SignUp</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+        <div [ngClass]="{'mdl-textfield mdl-js-textfield mdl-textfield--floating-label': true,
+            'is-invalid': form.controls.username.errors ? true : false}">
+            <input class="mdl-textfield__input" type="text" id="username" formControlName="username">
+            <label class="mdl-textfield__label" for="username">Username</label>
+            <span class="mdl-textfield__error">Username should match RegExp /{{'^[\w_]{4,16}$'}}/.</span>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="email" id="email" formControlName="email">
+            <label class="mdl-textfield__label" for="email">Email</label>
+            <span class="mdl-textfield__error">Email is invalid.</span>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="password" id="password" formControlName="password">
+            <label class="mdl-textfield__label" for="password">Password</label>
+        </div>
+        <div [ngClass]="{'mdl-textfield mdl-js-textfield mdl-textfield--floating-label': true,
+            'is-invalid': rePassword === form.value.password ? false : true}">
+            <input class="mdl-textfield__input" type="password" id="re-password" (input)="rePasswordInput($event)">
+            <label class="mdl-textfield__label" for="re-password">Re-password</label>
+            <span class="mdl-textfield__error">Passwords are not match.</span>
+        </div>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+        <button type="submit"
+                class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect"
+                [attr.disabled]="form.valid && rePassword === form.value.password ? null : 'disabled'">Signup</button>
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect" routerLink="/authorization/login">Login</a>
+    </div>
 </form>

@@ -1,14 +1,25 @@
-<form [formGroup]="form"
+<form class="pf-login-form pf-card-form mdl-card mdl-shadow--2dp"
+      [formGroup]="form"
       (submit)="formSubmit($event)">
-    Login <a routerLink="/authorization/signup">I don't have account</a>
-    <hr>
-    <label>Username:
-        <input type="text" formControlName="username">
-    </label>
-    <br>
-    <label>Password:
-        <input type="password" formControlName="password">
-    </label>
-    <br>
-    <button type="submit" [attr.disabled]="form.valid ? null : 'disabled'">Submit</button>
+    <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Login</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+        <div [ngClass]="{'mdl-textfield mdl-js-textfield mdl-textfield--floating-label': true,
+            'is-invalid': form.controls.username.errors ? true : false}">
+            <input class="mdl-textfield__input" type="text" id="username" formControlName="username">
+            <label class="mdl-textfield__label" for="username">Username</label>
+            <span class="mdl-textfield__error">Username should match RegExp /{{'^[\w_]{4,16}$'}}/.</span>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="password" id="password" formControlName="password">
+            <label class="mdl-textfield__label" for="password">Password</label>
+        </div>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+        <button type="submit"
+                class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect"
+                [attr.disabled]="form.valid ? null : 'disabled'">Login</button>
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect" routerLink="/authorization/signup">Signup</a>
+    </div>
 </form>

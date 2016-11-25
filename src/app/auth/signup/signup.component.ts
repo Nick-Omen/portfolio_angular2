@@ -9,17 +9,24 @@ import {AuthService} from "../auth.service";
 })
 export class SignupComponent implements OnInit {
     form: FormGroup;
-
+    rePassword: string = '';
     constructor(private authService: AuthService,
                 private formBuilder: FormBuilder) {
         this.form = formBuilder.group({
-            username: ['', Validators.required],
+            username: ['', [
+                Validators.required,
+                Validators.pattern('^[a-zA-Z0-9_]{4,16}$')
+            ]],
             email: ['', Validators.required],
             password: ['', Validators.required]
         });
     }
 
     ngOnInit() {
+    }
+
+    rePasswordInput(event) {
+        this.rePassword = event.currentTarget.value;
     }
 
     formSubmit(event) {
