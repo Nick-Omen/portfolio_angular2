@@ -1,0 +1,18 @@
+<form [formGroup]="form"
+      (submit)="formSubmit($event)">
+    Sign Up <a routerLink="/authorization/login">I already have an account</a>
+    <hr>
+    <label>Username:
+        <input type="text" formControlName="username">
+    </label>
+    <br>
+    <label>Email:
+        <input type="email" formControlName="email">
+    </label>
+    <br>
+    <label>Password:
+        <input type="password" formControlName="password">
+    </label>
+    <br>
+    <button type="submit" [attr.disabled]="form.valid ? null : 'disabled'">Submit</button>
+</form>

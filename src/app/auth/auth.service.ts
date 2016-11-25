@@ -40,9 +40,9 @@ export class AuthService {
             .then(res => res)
     }
 
-    signIn(formData): Promise<any> {
+    logIn(formData): Promise<any> {
 
-        const url = `${this.globals.apiUrl}/${this.url}/signin/`;
+        const url = `${this.globals.apiUrl}/${this.url}/login/`;
 
         return this.http.post(url, formData)
             .toPromise()
@@ -65,5 +65,13 @@ export class AuthService {
 
                 return true;
             })
+    }
+
+    logout() {
+
+        this.token = '';
+        this.username = '';
+        this.email = '';
+        window.sessionStorage.removeItem('user_info');
     }
 }

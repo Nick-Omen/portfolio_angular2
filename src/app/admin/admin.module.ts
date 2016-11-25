@@ -12,6 +12,8 @@ import {PipesModule} from "../pipes/pipes.module";
 import {StatisticsComponent} from "./statistics/statistics.component";
 import {WorksComponent} from "./works/works.component";
 import {TechnologiesComponent} from "./technologies/technologies.component";
+import {CanActivateViaAuthGuard} from "../services/can-activate-via-auth-guard.service";
+import {AuthService} from "../auth/auth.service";
 
 @NgModule({
     declarations: [
@@ -30,6 +32,8 @@ import {TechnologiesComponent} from "./technologies/technologies.component";
         PipesModule,
     ],
     providers: [
+        CanActivateViaAuthGuard,
+        AuthService,
         LanguagesService,
     ],
 })

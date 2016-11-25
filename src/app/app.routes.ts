@@ -6,6 +6,10 @@ export const AppRoutes: Array<any> = [
         loadChildren: 'app/admin/admin.module#AdminModule'
     },
     {
+        path: 'authorization',
+        loadChildren: 'app/auth/auth.module#AuthModule',
+    },
+    {
         path: '',
         component: HomeComponent,
         pathMatch: 'full',
