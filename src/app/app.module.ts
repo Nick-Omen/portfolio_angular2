@@ -9,15 +9,15 @@ import {AdminModule} from "./admin/admin.module";
 import {AppService} from "./app.service";
 import {HomeComponent} from "./home/home.component";
 
-import {WelcomeComponent} from './welcome/welcome.component';
-import {AboutComponent} from './about/about.component';
+import {WelcomeComponent} from './blocks/welcome/welcome.component';
+import {AboutComponent} from './blocks/about/about.component';
 
-import {HeaderComponent} from './blocks/header/header.component';
-import {NavigationComponent} from './blocks/navigation/navigation.component';
-import {SocialComponent} from './blocks/social/social.component';
-import {AboutCardComponent} from './blocks/about-card/about-card.component';
-import {AboutTableComponent} from './blocks/about-table/about-table.component';
-import {SkillsComponent} from './skills/skills.component';
+import {HeaderComponent} from './components/header/header.component';
+import {NavigationComponent} from './components/navigation/navigation.component';
+import {SocialComponent} from './components/social/social.component';
+import {AboutCardComponent} from './components/about-card/about-card.component';
+import {AboutTableComponent} from './components/about-table/about-table.component';
+import {SkillsComponent} from './blocks/skills/skills.component';
 import {SkillComponent} from './components/skill/skill.component';
 
 @NgModule({

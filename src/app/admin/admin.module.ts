@@ -8,7 +8,6 @@ import {AdminComponent} from "./admin.component";
 import {LanguagesComponent} from "./languages/languages.component";
 import {AdminNavigationComponent} from "./admin-navigation/admin-navigation.component";
 import {LanguagesService} from "./languages/languages.service";
-import {AuthModule} from "../auth/auth.module";
 import {PipesModule} from "../pipes/pipes.module";
 import {StatisticsComponent} from "./statistics/statistics.component";
 import {WorksComponent} from "./works/works.component";
@@ -28,7 +27,6 @@ import {TechnologiesComponent} from "./technologies/technologies.component";
         HttpModule,
         ReactiveFormsModule,
         RouterModule.forChild(AdminRoutes),
-        AuthModule,
         PipesModule,
     ],
     providers: [

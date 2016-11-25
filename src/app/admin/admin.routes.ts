@@ -11,6 +11,10 @@ export const AdminRoutes = [
         children: [
             {
                 path: '',
+                redirectTo: 'statistic'
+            },
+            {
+                path: 'statistic',
                 component: StatisticsComponent
             },
             {

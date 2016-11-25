@@ -27,6 +27,10 @@ export class AuthService {
         return !!this.token
     }
 
+    getToken(): string {
+        return this.token;
+    }
+
     signUp(formData): Promise<boolean> {
 
         const url = `${this.globals.apiUrl}/${this.url}/signup/`;
