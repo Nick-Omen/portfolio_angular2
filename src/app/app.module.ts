@@ -18,6 +18,7 @@ import {SkillsComponent} from "./blocks/skills/skills.component";
 import {SkillComponent} from "./components/skill/skill.component";
 import {AuthModule} from "./auth/auth.module";
 import {AuthService} from "./auth/auth.service";
+import {MdlService} from "./services/mdl.service";
 
 @NgModule({
     declarations: [
@@ -43,6 +44,7 @@ import {AuthService} from "./auth/auth.service";
     providers: [
         AppService,
         AuthService,
+        MdlService,
     ],
     bootstrap: [
         AppComponent

@@ -1,4 +1,5 @@
 import {Component, OnInit, HostListener} from '@angular/core';
+import {MdlService} from "./services/mdl.service";
 
 @Component({
     selector: 'app-root',
@@ -7,10 +8,11 @@ import {Component, OnInit, HostListener} from '@angular/core';
 })
 
 export class AppComponent implements OnInit {
-    constructor() {
+    constructor(private ch: MdlService) {
     }
 
     ngOnInit() {
+        setInterval(this.ch.updateDom, 200);
     }
 
     @HostListener('window:scroll', ['$event'])

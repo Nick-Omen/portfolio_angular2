@@ -5,11 +5,9 @@
         <h2 class="mdl-card__title-text">Login</h2>
     </div>
     <div class="mdl-card__supporting-text">
-        <div [ngClass]="{'mdl-textfield mdl-js-textfield mdl-textfield--floating-label': true,
-            'is-invalid': form.controls.username.errors ? true : false}">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             <input class="mdl-textfield__input" type="text" id="username" formControlName="username">
             <label class="mdl-textfield__label" for="username">Username</label>
-            <span class="mdl-textfield__error">Username should match RegExp /{{'^[\w_]{4,16}$'}}/.</span>
         </div>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             <input class="mdl-textfield__input" type="password" id="password" formControlName="password">
