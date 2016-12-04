@@ -1,3 +1,12 @@
 <section class="pf-section pf-skills">
-    test
+    <div class="pf-container">
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--12-col">
+                <h3 class="mdl-typography--header">Skills</h3>
+                <h5 class="mdl-typography--help-text">If you think you know everything then you know nothing</h5>
+
+                <app-skill *ngFor="let l of languages" [skill]="l"></app-skill>
+            </div>
+        </div>
+    </div>
 </section>

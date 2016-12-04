@@ -1,55 +1,48 @@
 <div class="pf-container">
     <div class="mdl-grid">
         <div class="mdl-cell mdl-cell--12-col">
-            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp pf-table">
-                <thead>
-                <tr>
-                    <th class="mdl-data-table__cell--non-numeric">Name</th>
-                    <th>Skill level</th>
-                    <th>Experience</th>
-                    <th colspan="2">
-                        <button *ngIf="languages.length !== 0"
-                                type="button"
-                                (click)="reloadLanguages()">refresh data</button>
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr *ngIf="languages.length === 0">
-                    <td colspan="5">
-                        No languages created.
-                    </td>
-                </tr>
-                <tr *ngFor="let lang of languages" [attr.data-id]="lang.id">
-                    <td class="mdl-data-table__cell--non-numeric">{{lang.name}}</td>
-                    <td>{{lang.skill_level}}</td>
-                    <td>{{lang.experience | experience}}</td>
-                    <td><button type="button" (click)="editLanguage(lang, lang.id)">Edit</button></td>
-                    <td><button type="button" (click)="removeLanguage(lang.id)">Remove</button></td>
-                </tr>
-                </tbody>
-                <tfoot>
-                <tr *ngIf="!addItem">
-                    <td colspan="5">
-                        <button type="button" (click)="triggerForm()">Add item</button>
-                    </td>
-                </tr>
-                <tr *ngIf="addItem">
-                    <td colspan="5">
-                        <form [formGroup]="form" (submit)="editItem ? modifyLanguage($event) : addLanguage($event)">
-                            <input placeholder="Language name" type="text" formControlName="name">
-                            <input placeholder="Skill level" type="number" min="0" max="100" formControlName="skill_level">
-                            <input title="Experience" type="text" formControlName="experience" value="01-01-2015">
-                            <button type="submit" [attr.disabled]="form.valid ? null : 'disabled'">Submit</button>
-                            <button type="button" (click)="closeForm()">Cancel</button>
-                        </form>
-                        <pre>
-                            {{form.value | json}}
-                        </pre>
-                    </td>
-                </tr>
-                </tfoot>
-            </table>
+            <app-admin-table
+                [formModel]="languageFormModel"
+                [items]="languages"
+                (onEdit)="editLanguage($event)"
+                (onRemove)="removeLanguage($event)"
+                (onRefresh)="reloadLanguages()"></app-admin-table>
+            <div [ngClass]="{'pf-form-box': true, 'mdl-typography--text-right': !addItem}">
+                <button *ngIf="!addItem"
+                        type="button"
+                        class="mdl-button mdl-js-button mdl-button--with-ripple"
+                        (click)="triggerForm()">Add item</button>
+                <form *ngIf="addItem"
+                      class="pf-form"
+                      [formGroup]="form"
+                      (submit)="formSubmit($event)">
+                    <h3 class="mdl-typography--header">
+                        {{form.value.id ? 'Edit item' : 'Add item'}}
+                    </h3>
+                    <input type="hidden" formControlName="id" [attr.value]="form.value?.id ? form.value?.id : 0">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="name" formControlName="name">
+                        <label class="mdl-textfield__label" for="name">Name</label>
+                        <span class="mdl-textfield__error"></span>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="number" min="0" max="100" id="skill_level" formControlName="skill_level">
+                        <label class="mdl-textfield__label" for="skill_level">Skill level</label>
+                        <span class="mdl-textfield__error"></span>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="experience" formControlName="experience">
+                        <label class="mdl-textfield__label" for="experience">Experience from</label>
+                        <span class="mdl-textfield__error">01-01-2015</span>
+                    </div>
+                    <button [attr.disabled]="form.valid ? null : 'disabled'"
+                            type="submit"
+                            class="mdl-button mdl-js-button mdl-button--with-ripple mdl-button--raised mdl-button--accent">Submit</button>
+                    <button (click)="closeForm()"
+                            type="button"
+                            class="mdl-button mdl-js-button mdl-button--with-ripple">Cancel</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>

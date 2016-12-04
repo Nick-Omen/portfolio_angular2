@@ -13,13 +13,30 @@ export class LanguagesComponent implements OnInit {
 
     languages: Language[] = [];
     form: FormGroup;
-    editItem: number = 0;
     addItem: boolean = false;
+    languageFormModel: Array<any> = [
+        {
+            name: 'Name',
+            key: 'name',
+            numeric: false
+        },
+        {
+            name: 'Skill level',
+            key: 'skill_level',
+            numeric: true
+        },
+        {
+            name: 'Experience',
+            key: 'experience',
+            numeric: true
+        }
+    ];
 
     constructor(private languagesService: LanguagesService,
                 private globals: AppService,
                 private formBuilder: FormBuilder) {
         this.form = formBuilder.group({
+            id: '',
             name: [null, Validators.required],
             skill_level: [null, Validators.required],
             experience: [null, [
@@ -35,25 +52,15 @@ export class LanguagesComponent implements OnInit {
     }
 
     reloadLanguages(): void {
-        this.languages.length = 0;
 
-        this.loadLanguages()
-            .then(languages => {
-                if (this.editItem) {
-                    this.form.patchValue(this.getLanguageValue(languages.filter(l => l.id === this.editItem)[0]));
-                }
-            });
+        this.languages.length = 0;
+        this.loadLanguages();
     }
 
-    loadLanguages(): Promise<Language[]> {
+    loadLanguages() {
 
-        return new Promise(resolve => {
-            this.languagesService.getLanguages()
-                .then(languages => {
-                    this.languages = languages;
-                    resolve(languages);
-                })
-        });
+        this.languagesService.getLanguages()
+            .then(languages => this.languages = languages.map(l => this.getLanguageValue(l)))
     }
 
     triggerForm(): void {
@@ -69,44 +76,33 @@ export class LanguagesComponent implements OnInit {
         this.form.reset();
     }
 
-    addLanguage(event): void {
-        console.log(this.editItem, this.form.value);
+    formSubmit(event): void {
         event.preventDefault();
 
-        this.languagesService.addLanguage(this.form.value)
-            .then(res => {
-                this.languages.push(Object.assign({}, {id: res.id}, this.form.value));
-                this.form.reset();
-            })
+        if(this.form.value.id) {
+
+            this.languagesService.modifyLanguage(this.form.value)
+                .then(language => {
+                    this.languages = this.languages.map(l => {
+                        if(l.id === language.id) {
+                            return language
+                        }
+                        return l;
+                    });
+
+                    this.closeForm();
+                })
+        } else {
+
+            this.languagesService.addLanguage(this.form.value)
+                .then(language => {
+                    this.languages.push(language);
+                    this.form.reset();
+                })
+        }
     }
 
-    modifyLanguage(event): void {
-        console.log(this.editItem, this.form.value);
-        event.preventDefault();
-
-        this.languagesService.modifyLanguage(this.editItem, this.form.value)
-            .then(res => {
-                this.languages = this.languages.map(l => {
-                    if (l.id === res.id) {
-                        return res;
-                    }
-                    return l;
-                });
-                this.form.reset();
-                this.editItem = 0;
-                this.addItem = false;
-            })
-    }
-
-    removeLanguage(id) {
-
-        this.languagesService.removeLanguage(id)
-            .then(res => {
-                this.languages = this.languages.filter(l => l.id != res.id)
-            })
-    }
-
-    getLanguageValue(language: Language) {
+    private getLanguageValue(language: Language) {
 
         const expDate = new Date(language.experience);
         const experience = ('0' + expDate.getMonth() + 1).slice(-2) + '-'
@@ -114,14 +110,25 @@ export class LanguagesComponent implements OnInit {
             + expDate.getFullYear();
 
         return Object.assign(language, {experience: experience});
-
     }
 
-    editLanguage(language, languageId) {
+    editLanguage(language) {
 
-        this.editItem = languageId;
+        this.form.patchValue(language);
         this.addItem = true;
+    }
 
-        this.form.patchValue(this.getLanguageValue(language));
+    removeLanguage(language) {
+
+        this.languagesService.removeLanguage(language.id)
+            .then(res => {
+                this.languages = this.languages.filter(l => l.id != res.id);
+
+                if(this.form.value.id && this.form.value.id === language.id) {
+
+                    this.form.reset();
+                    this.addItem = false;
+                }
+            })
     }
 }

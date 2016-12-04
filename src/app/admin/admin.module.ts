@@ -14,6 +14,10 @@ import {WorksComponent} from "./works/works.component";
 import {TechnologiesComponent} from "./technologies/technologies.component";
 import {CanActivateViaAuthGuard} from "../services/can-activate-via-auth-guard.service";
 import {AuthService} from "../auth/auth.service";
+import {TableComponent} from './table/table.component';
+import {WorksService} from "./works/works.service";
+import {TechnologiesService} from "./technologies/technologies.service";
+import {WorkTypeService} from "./work-type.service";
 
 @NgModule({
     declarations: [
@@ -23,6 +27,7 @@ import {AuthService} from "../auth/auth.service";
         TechnologiesComponent,
         AdminNavigationComponent,
         StatisticsComponent,
+        TableComponent,
     ],
     imports: [
         CommonModule,
@@ -35,6 +40,9 @@ import {AuthService} from "../auth/auth.service";
         CanActivateViaAuthGuard,
         AuthService,
         LanguagesService,
+        WorksService,
+        TechnologiesService,
+        WorkTypeService,
     ],
 })
 export class AdminModule {

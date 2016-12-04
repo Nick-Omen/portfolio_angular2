@@ -1,0 +1,43 @@
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp pf-table">
+    <thead>
+    <tr>
+        <th *ngFor="let m of formModel"
+            [ngClass]="{'mdl-data-table__cell--non-numeric': !m.numeric}">{{m.name}}
+        </th>
+        <th colspan="2" align="right">
+            <button *ngIf="items?.length !== 0"
+                    type="button"
+                    class="mdl-button mdl-js-button mdl-button--icon"
+                    (click)="refreshTable()">
+                <i class="material-icons">refresh</i>
+            </button>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngIf="items?.length === 0">
+        <td [attr.colspan]="formModel.length + 2">
+            No items created.
+        </td>
+    </tr>
+    <tr *ngFor="let item of items" [attr.data-id]="item.id">
+        <td *ngFor="let m of formModel"
+            [ngClass]="{'mdl-data-table__cell--non-numeric': !m.numeric}">{{item[m.key]}}
+        </td>
+        <td class="mdl-data-table__cell--action">
+            <button (click)="editItem(item)"
+                    type="button"
+                    class="mdl-button mdl-js-button mdl-button--icon">
+                <i class="material-icons">edit</i>
+            </button>
+        </td>
+        <td class="mdl-data-table__cell--action">
+            <button (click)="removeItem(item)"
+                    type="button"
+                    class="mdl-button mdl-js-button mdl-button--icon">
+                <i class="material-icons">delete</i>
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>

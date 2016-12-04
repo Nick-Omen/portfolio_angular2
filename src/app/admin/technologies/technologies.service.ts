@@ -1,37 +1,37 @@
 import {Injectable} from '@angular/core';
-import {Language} from "./language";
 import {Http} from "@angular/http";
 import {AppService} from "../../app.service";
+import {Technology} from "./technology";
 import "rxjs/add/operator/toPromise";
 
 @Injectable()
-export class LanguagesService {
+export class TechnologiesService {
 
-    url: string = 'languages';
+    url: string = 'technologies';
 
     constructor(private globals: AppService,
                 private http: Http) {
     }
 
-    getLanguages(): Promise<Language[]> {
+    getTechnologies(): Promise<Technology[]> {
 
         const url = `${this.globals.apiUrl}/${this.url}/`;
 
         return this.http.get(url)
             .toPromise()
-            .then(res => res.json() as Language[])
+            .then(res => res.json() as Technology[])
     }
 
-    addLanguage(formData: Language): Promise<any> {
+    addTechnology(formData): Promise<Technology> {
 
         const url = `${this.globals.apiUrl}/${this.url}/`;
 
         return this.http.post(url, formData)
             .toPromise()
-            .then(res => res.json())
+            .then(res => res.json() as Technology)
     }
 
-    modifyLanguage(formData: Language): Promise<any> {
+    modifyTechnology(formData: Technology): Promise<any> {
 
         const url = `${this.globals.apiUrl}/${this.url}/${formData.id}/`;
 
@@ -40,7 +40,7 @@ export class LanguagesService {
             .then(res => res.json())
     }
 
-    removeLanguage(id: number): Promise<any> {
+    removeTechnology(id: number): Promise<any> {
 
         const url = `${this.globals.apiUrl}/${this.url}/${id}`;
 
@@ -48,4 +48,5 @@ export class LanguagesService {
             .toPromise()
             .then(res => res.json())
     }
+
 }
