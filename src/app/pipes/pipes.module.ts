@@ -1,16 +1,19 @@
 import {NgModule} from '@angular/core';
-import {ExperiencePipe} from "./experience.pipe";
 import {CommonModule} from "@angular/common";
+import {ExperiencePipe} from "./experience.pipe";
+import {AscDescPipe} from "./asc-desc.pipe";
 
 @NgModule({
     declarations: [
         ExperiencePipe,
+        AscDescPipe,
     ],
     imports: [
         CommonModule,
     ],
     exports: [
         ExperiencePipe,
+        AscDescPipe,
     ],
 })
 

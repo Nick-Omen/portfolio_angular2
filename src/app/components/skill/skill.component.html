@@ -1,1 +1,5 @@
-<div>{{skill.name}} - {{skill.skill_level}}</div>
+<div class="skill">
+    <div class="skill__scale" [ngStyle]="{width: skill.skill_level + '%'}"></div>
+    <span class="skill__name" [ngStyle]="{left: skill.skill_level + '%'}">{{skill.name}}</span>
+    <span class="skill__experience">Experience more than {{skill.experience | experience}}</span>
+</div>

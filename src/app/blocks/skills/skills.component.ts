@@ -9,6 +9,7 @@ import {LanguagesService} from "../../admin/languages/languages.service";
 })
 export class SkillsComponent implements OnInit {
     languages: Language[];
+    order: string = 'desc';
 
     constructor(private languageService: LanguagesService) {
     }
@@ -16,5 +17,9 @@ export class SkillsComponent implements OnInit {
     ngOnInit() {
         this.languageService.getLanguages()
             .then(languages => this.languages = languages)
+    }
+
+    changeOrder(order) {
+        this.order = order;
     }
 }

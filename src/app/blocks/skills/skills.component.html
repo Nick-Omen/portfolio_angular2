@@ -4,8 +4,13 @@
             <div class="mdl-cell mdl-cell--12-col">
                 <h3 class="mdl-typography--header">Skills</h3>
                 <h5 class="mdl-typography--help-text">If you think you know everything then you know nothing</h5>
+                <ul class="order-switcher">
+                    <li class="order-switcher__item order-switcher__text">Order by:</li>
+                    <li (click)="changeOrder('asc')" [ngClass]="{'order-switcher__item order-switcher__button': true, 'is-active': order === 'asc'}">ASC</li>
+                    <li (click)="changeOrder('desc')" [ngClass]="{'order-switcher__item order-switcher__button': true, 'is-active': order === 'desc'}">DESC</li>
+                </ul>
 
-                <app-skill *ngFor="let l of languages" [skill]="l"></app-skill>
+                <app-skill *ngFor="let l of languages | ascDesc : order : 'skill_level'" [skill]="l"></app-skill>
             </div>
         </div>
     </div>
