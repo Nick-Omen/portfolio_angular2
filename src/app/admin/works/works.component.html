@@ -1,3 +1,77 @@
-<p>
-  works works!
-</p>
+<div class="pf-container">
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--12-col">
+            <app-admin-table
+                    [formModel]="workFormModel"
+                    [items]="works"
+                    (onEdit)="editWork($event)"
+                    (onRemove)="removeWork($event)"
+                    (onRefresh)="reloadWorks()"></app-admin-table>
+            <div [ngClass]="{'pf-form-box': true, 'mdl-typography--text-right': !addItem}">
+                <button *ngIf="!addItem"
+                        type="button"
+                        class="mdl-button mdl-js-button mdl-button--with-ripple"
+                        (click)="triggerForm()">Add item
+                </button>
+                <form *ngIf="addItem"
+                      class="pf-form"
+                      [formGroup]="form"
+                      enctype="multipart/form-data"
+                      (submit)="formSubmit($event)">
+                    <input type="hidden" formControlName="id" [attr.value]="form.value?.id ? form.value?.id : 0">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="title" formControlName="title">
+                        <label class="mdl-textfield__label" for="title">Title</label>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="short_description" formControlName="short_description">
+                        <label class="mdl-textfield__label" for="short_description">Short description</label>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <textarea class="mdl-textfield__input" rows="3" id="description" formControlName="description"></textarea>
+                        <label class="mdl-textfield__label" for="description">Description</label>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="url" formControlName="url">
+                        <label class="mdl-textfield__label" for="url">Url</label>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield">
+                        <select class="mdl-textfield__input" id="work_types" formControlName="work_types" multiple>
+                            <option value="0" selected [attr.disabled]="form.value?.work_types ? true : null">None</option>
+                            <option *ngFor="let wt of workTypes"
+                                    value="{{wt.id}}">{{wt.name}}
+                            </option>
+                        </select>
+                        <label class="mdl-textfield__label" for="work_types">Work type</label>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield">
+                        <select class="mdl-textfield__input" id="technologies" formControlName="technologies" multiple>
+                            <option value="0" selected [attr.disabled]="form.value?.technologies ? true : null">None</option>
+                            <option *ngFor="let tech of technologies"
+                                    value="{{tech.id}}">{{tech.name}}
+                            </option>
+                        </select>
+                        <label class="mdl-textfield__label" for="technologies">Technologies</label>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield">
+                        <select class="mdl-textfield__input" id="languages" formControlName="languages" multiple>
+                            <option value="0" selected [attr.disabled]="form.value?.languages ? true : null">None</option>
+                            <option *ngFor="let lang of languages"
+                                    value="{{lang.id}}">{{lang.name}}
+                            </option>
+                        </select>
+                        <label class="mdl-textfield__label" for="languages">Languages</label>
+                    </div>
+                    <button [attr.disabled]="form.valid ? null : 'disabled'"
+                            type="submit"
+                            class="mdl-button mdl-js-button mdl-button--with-ripple mdl-button--raised mdl-button--accent">Submit
+                    </button>
+                    <button (click)="closeForm()"
+                            type="button"
+                            class="mdl-button mdl-js-button mdl-button--with-ripple">Cancel
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
