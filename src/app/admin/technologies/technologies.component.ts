@@ -28,8 +28,8 @@ export class TechnologiesComponent implements OnInit {
         }
     ];
 
-    constructor(private ts: TechnologiesService,
-                private wts: WorkTypeService,
+    constructor(private techService: TechnologiesService,
+                private workTypesService: WorkTypeService,
                 private formBuilder: FormBuilder) {
         this.form = formBuilder.group({
             id: '',
@@ -41,14 +41,14 @@ export class TechnologiesComponent implements OnInit {
     ngOnInit() {
 
         this.loadTechnologies();
-        this.wts.getWorkTypes()
+        this.workTypesService.get()
             .then(workTypes => {
                 this.workTypes = workTypes;
             })
     }
 
     loadTechnologies(): void {
-        this.ts.getTechnologies()
+        this.techService.get()
             .then(technologies => this.technologies = technologies)
     }
 
@@ -67,7 +67,7 @@ export class TechnologiesComponent implements OnInit {
     }
 
     removeTechnology(technology) {
-        this.ts.removeTechnology(technology.id)
+        this.techService.del(technology.id)
             .then(res => {
                 this.technologies = this.technologies.filter(t => t.id != res.id);
 
@@ -98,7 +98,7 @@ export class TechnologiesComponent implements OnInit {
 
         if (this.form.value.id) {
 
-            this.ts.modifyTechnology(this.form.value)
+            this.techService.modify(this.form.value)
                 .then(technology => {
                     this.technologies = this.technologies.map(t => {
                         if(t.id === technology.id) {
@@ -111,7 +111,7 @@ export class TechnologiesComponent implements OnInit {
                 })
         } else {
 
-            this.ts.addTechnology({
+            this.techService.add({
                     name: this.form.value.name,
                     work_type: this.form.value.work_type.join(',')
                 })

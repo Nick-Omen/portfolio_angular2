@@ -15,8 +15,8 @@ export class SkillsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.languageService.getLanguages()
-            .then(languages => this.languages = languages)
+        this.languageService.get()
+            .then((languages: Language[]) => this.languages = languages)
     }
 
     changeOrder(order) {

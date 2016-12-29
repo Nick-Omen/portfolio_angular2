@@ -59,7 +59,7 @@ export class LanguagesComponent implements OnInit {
 
     loadLanguages() {
 
-        this.languagesService.getLanguages()
+        this.languagesService.get()
             .then(languages => this.languages = languages.map(l => this.getLanguageValue(l)))
     }
 
@@ -81,7 +81,7 @@ export class LanguagesComponent implements OnInit {
 
         if(this.form.value.id) {
 
-            this.languagesService.modifyLanguage(this.form.value)
+            this.languagesService.modify(this.form.value)
                 .then(language => {
                     this.languages = this.languages.map(l => {
                         if(l.id === language.id) {
@@ -94,7 +94,7 @@ export class LanguagesComponent implements OnInit {
                 })
         } else {
 
-            this.languagesService.addLanguage(this.form.value)
+            this.languagesService.add(this.form.value)
                 .then(language => {
                     this.languages.push(language);
                     this.form.reset();
@@ -120,7 +120,7 @@ export class LanguagesComponent implements OnInit {
 
     removeLanguage(language) {
 
-        this.languagesService.removeLanguage(language.id)
+        this.languagesService.del(language.id)
             .then(res => {
                 this.languages = this.languages.filter(l => l.id != res.id);
 

@@ -20,6 +20,7 @@ import {AuthModule} from "./auth/auth.module";
 import {AuthService} from "./auth/auth.service";
 import {MdlService} from "./services/mdl.service";
 import {PipesModule} from "./pipes/pipes.module";
+import {ExperienceComponent} from "./blocks/experience/experience.component";
 
 @NgModule({
     declarations: [
@@ -34,6 +35,7 @@ import {PipesModule} from "./pipes/pipes.module";
         AboutTableComponent,
         SkillsComponent,
         SkillComponent,
+        ExperienceComponent,
     ],
     imports: [
         BrowserModule,

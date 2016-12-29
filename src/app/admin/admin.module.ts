@@ -18,6 +18,7 @@ import {TableComponent} from './table/table.component';
 import {WorksService} from "./works/works.service";
 import {TechnologiesService} from "./technologies/technologies.service";
 import {WorkTypeService} from "./work-type.service";
+import {AuthModule} from "../auth/auth.module";
 
 @NgModule({
     declarations: [
@@ -35,6 +36,7 @@ import {WorkTypeService} from "./work-type.service";
         ReactiveFormsModule,
         RouterModule.forChild(AdminRoutes),
         PipesModule,
+        AuthModule,
     ],
     providers: [
         CanActivateViaAuthGuard,

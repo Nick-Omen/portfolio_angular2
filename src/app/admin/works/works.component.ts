@@ -39,8 +39,8 @@ export class WorksComponent implements OnInit {
         }
     ];
 
-    constructor(private ws: WorksService,
-                private wts: WorkTypeService,
+    constructor(private worksService: WorksService,
+                private workTypesService: WorkTypeService,
                 private techService: TechnologiesService,
                 private langService: LanguagesService,
                 private formBuilder: FormBuilder) {
@@ -60,17 +60,17 @@ export class WorksComponent implements OnInit {
 
         this.loadWorks();
 
-        this.wts.getWorkTypes()
-            .then(workTypes => this.workTypes = workTypes);
-        this.techService.getTechnologies()
-            .then(technologies => this.technologies = technologies);
-        this.langService.getLanguages()
-            .then(languages => this.languages = languages);
+        this.workTypesService.get()
+            .then((workTypes: WorkType[]) => this.workTypes = workTypes);
+        this.techService.get()
+            .then((technologies: Technology[]) => this.technologies = technologies);
+        this.langService.get()
+            .then((languages: Language[]) => this.languages = languages);
     }
 
     loadWorks() {
-        this.ws.getWorks()
-            .then(works => this.works = works)
+        this.worksService.get()
+            .then((works: Work[]) => this.works = works)
     }
 
     triggerForm() {
@@ -93,15 +93,15 @@ export class WorksComponent implements OnInit {
         this.form.reset();
     }
 
-    editWork(work) {
+    editWork(work: Work) {
 
         this.form.patchValue(work);
         this.addItem = true;
     }
 
-    removeWork(work) {
+    removeWork(work: Work) {
 
-        this.ws.removeWork(work.id)
+        this.worksService.del(work.id)
             .then(res => {
                 this.works = this.works.filter(w => w.id != res.id);
 
@@ -126,7 +126,7 @@ export class WorksComponent implements OnInit {
 
         if (this.form.value.id) {
 
-            this.ws.modifyWork(this.form.value)
+            this.worksService.modify(this.form.value)
                 .then(work => {
                     this.works = this.works.map(w => {
                         if(w.id === work.id) {
@@ -139,7 +139,7 @@ export class WorksComponent implements OnInit {
                 })
         } else {
 
-            this.ws.addWork(this.prepareForm(this.form.value))
+            this.worksService.add(this.prepareForm(this.form.value))
                 .then(work => {
                     this.works.push(work);
                     this.form.reset();

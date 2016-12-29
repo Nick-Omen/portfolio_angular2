@@ -1,24 +1,18 @@
 import {Injectable} from '@angular/core';
-import {WorkType} from "./work-type";
 import {AppService} from "../app.service";
 import {Http} from "@angular/http";
 
 import "rxjs/add/operator/toPromise";
+import {BaseService} from "./base.service";
+import {AuthService} from "../auth/auth.service";
 
 @Injectable()
-export class WorkTypeService {
-    url: string = 'work-types';
+export class WorkTypeService extends BaseService {
 
-    constructor(private globals: AppService,
-                private http: Http) {
-    }
-
-    getWorkTypes(): Promise<WorkType[]> {
-
-        const url = `${this.globals.apiUrl}/${this.url}/`;
-
-        return this.http.get(url)
-            .toPromise()
-            .then(res => res.json() as WorkType[])
+    constructor(public globals: AppService,
+                public http: Http,
+                public authService: AuthService) {
+        super(globals, http, authService);
+        this.url = 'work-types';
     }
 }

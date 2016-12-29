@@ -1,51 +1,17 @@
 import {Injectable} from '@angular/core';
-import {Language} from "./language";
 import {Http} from "@angular/http";
 import {AppService} from "../../app.service";
 import "rxjs/add/operator/toPromise";
+import {BaseService} from "../base.service";
+import {AuthService} from "../../auth/auth.service";
 
 @Injectable()
-export class LanguagesService {
+export class LanguagesService extends BaseService {
 
-    url: string = 'languages';
-
-    constructor(private globals: AppService,
-                private http: Http) {
-    }
-
-    getLanguages(): Promise<Language[]> {
-
-        const url = `${this.globals.apiUrl}/${this.url}/`;
-
-        return this.http.get(url)
-            .toPromise()
-            .then(res => res.json() as Language[])
-    }
-
-    addLanguage(formData: Language): Promise<any> {
-
-        const url = `${this.globals.apiUrl}/${this.url}/`;
-
-        return this.http.post(url, formData)
-            .toPromise()
-            .then(res => res.json())
-    }
-
-    modifyLanguage(formData: Language): Promise<any> {
-
-        const url = `${this.globals.apiUrl}/${this.url}/${formData.id}/`;
-
-        return this.http.put(url, formData)
-            .toPromise()
-            .then(res => res.json())
-    }
-
-    removeLanguage(id: number): Promise<any> {
-
-        const url = `${this.globals.apiUrl}/${this.url}/${id}`;
-
-        return this.http.delete(url)
-            .toPromise()
-            .then(res => res.json())
+    constructor(public globals: AppService,
+                public http: Http,
+                public authService: AuthService) {
+        super(globals, http, authService);
+        this.url = 'languages';
     }
 }

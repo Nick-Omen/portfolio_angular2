@@ -10,7 +10,7 @@ export class AboutTableComponent implements OnInit {
     age: number;
 
     constructor() {
-
+        this.age = new Date().getFullYear() - 1995;
     }
 
     ngOnInit() {
