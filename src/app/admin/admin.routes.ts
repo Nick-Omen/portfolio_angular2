@@ -15,6 +15,7 @@ export const AdminRoutes = [
         children: [
             {
                 path: '',
+                pathMatch: 'full',
                 redirectTo: 'statistic'
             },
             {

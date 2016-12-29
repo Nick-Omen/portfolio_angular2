@@ -10,6 +10,7 @@ export const AuthRoutes = [
         children: [
             {
                 path: '',
+                pathMatch: 'full',
                 redirectTo: 'signup'
             },
             {

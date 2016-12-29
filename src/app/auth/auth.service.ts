@@ -31,7 +31,7 @@ export class AuthService {
         return this.token;
     }
 
-    signUp(formData): Promise<boolean> {
+    signUp(formData): Promise<any> {
 
         const url = `${this.globals.apiUrl}/${this.url}/signup/`;
 
