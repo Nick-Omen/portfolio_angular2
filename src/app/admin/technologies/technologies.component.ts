@@ -21,11 +21,11 @@ export class TechnologiesComponent implements OnInit {
             key: 'name',
             numeric: false
         },
-        {
-            name: 'Work type',
-            key: 'work_type',
-            numeric: false
-        }
+        // {
+        //     name: 'Work type',
+        //     key: 'work_type',
+        //     numeric: false
+        // }
     ];
 
     constructor(private techService: TechnologiesService,
@@ -49,7 +49,10 @@ export class TechnologiesComponent implements OnInit {
 
     loadTechnologies(): void {
         this.techService.get()
-            .then(technologies => this.technologies = technologies)
+            .then(technologies => {
+                this.technologies = technologies;
+                console.log(technologies);
+            })
     }
 
     reloadTechnologies() {
@@ -60,9 +63,7 @@ export class TechnologiesComponent implements OnInit {
 
     editTechnology(technology) {
 
-        this.form.patchValue(Object.assign({}, technology, {
-            work_type: technology.work_type.split(',')
-        }));
+        this.form.patchValue(technology);
         this.addItem = true;
     }
 
@@ -111,10 +112,7 @@ export class TechnologiesComponent implements OnInit {
                 })
         } else {
 
-            this.techService.add({
-                    name: this.form.value.name,
-                    work_type: this.form.value.work_type.join(',')
-                })
+            this.techService.add(this.form.value)
                 .then(technology => {
                     this.technologies.push(technology);
                     this.form.reset()

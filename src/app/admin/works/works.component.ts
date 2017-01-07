@@ -113,14 +113,6 @@ export class WorksComponent implements OnInit {
             })
     }
 
-    private prepareForm(formData) {
-        return Object.assign({}, formData, {
-            technologies: formData.technologies.join(','),
-            work_types: formData.work_types.join(','),
-            languages: formData.languages.join(',')
-        })
-    }
-
     formSubmit(event) {
         event.preventDefault();
 
@@ -139,7 +131,7 @@ export class WorksComponent implements OnInit {
                 })
         } else {
 
-            this.worksService.add(this.prepareForm(this.form.value))
+            this.worksService.add(this.form.value)
                 .then(work => {
                     this.works.push(work);
                     this.form.reset();

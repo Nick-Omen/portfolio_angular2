@@ -98,7 +98,7 @@ export class LanguagesComponent implements OnInit {
                 .then(language => {
                     this.languages.push(language);
                     this.form.reset();
-                })
+                });
         }
     }
 

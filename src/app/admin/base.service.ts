@@ -1,28 +1,40 @@
 import {Injectable} from '@angular/core';
-import {Http, Headers} from "@angular/http";
+import {Http, Headers, RequestOptions} from "@angular/http";
 import {AppService} from "../app.service";
 import {AuthService} from "../auth/auth.service";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class BaseService {
 
-    url: string;
+    protected url: string;
 
     constructor(public globals: AppService,
                 public http: Http,
-                public authService: AuthService) {
+                public authService: AuthService,
+                public router: Router) {
     }
 
-    getHeaders(): Headers {
+    private getHeaders(): Headers {
 
         const token = this.authService.getToken();
+        let headers = new Headers();
+
+        headers.append('Content-Type', 'application/json');
 
         if (token) {
 
-            return new Headers({Authorization: 'Token ' + token});
+            headers.append('Authorization', 'Token ' + token);
         }
 
-        return new Headers();
+        return headers;
+    }
+
+    private getRequestOptions(): RequestOptions {
+
+        return new RequestOptions({
+            headers: this.getHeaders()
+        })
     }
 
     get(): Promise<any> {
@@ -39,7 +51,7 @@ export class BaseService {
 
         const url = `${this.globals.apiUrl}/${this.url}/`;
 
-        return this.http.post(url, formData)
+        return this.http.post(url, formData, this.getRequestOptions())
             .toPromise()
             .then(res => res.json())
             .catch(this.errorHandler)
@@ -49,7 +61,7 @@ export class BaseService {
 
         const url = `${this.globals.apiUrl}/${this.url}/${formData.id}/`;
 
-        return this.http.put(url, formData)
+        return this.http.put(url, formData, this.getRequestOptions())
             .toPromise()
             .then(res => res.json())
             .catch(this.errorHandler)
@@ -59,14 +71,15 @@ export class BaseService {
 
         const url = `${this.globals.apiUrl}/${this.url}/${id}`;
 
-        return this.http.delete(url)
+        return this.http.delete(url, this.getRequestOptions())
             .toPromise()
             .then(res => res.json())
             .catch(this.errorHandler)
     }
 
-    errorHandler(res) {
+    errorHandler() {
 
-        console.log(res);
+        this.authService.logout();
+        this.router.navigate(['/']);
     }
 }
