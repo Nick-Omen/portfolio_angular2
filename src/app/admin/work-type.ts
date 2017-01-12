@@ -1,5 +1,5 @@
 export class WorkType {
-    id: number;
+    id?: number;
     name: string;
     slug: string;
 }

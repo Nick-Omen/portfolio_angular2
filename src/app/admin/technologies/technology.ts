@@ -1,6 +1,9 @@
+import {WorkType} from "../work-type";
+
 export class Technology {
     id: number;
     name: string;
     slug: string;
-    work_type: number[];
+    image: string;
+    work_type: WorkType;
 }

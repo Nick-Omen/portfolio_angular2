@@ -20,6 +20,10 @@ import {AuthModule} from "./auth/auth.module";
 import {AuthService} from "./auth/auth.service";
 import {MdlService} from "./services/mdl.service";
 import {PipesModule} from "./pipes/pipes.module";
+import {SnackbarComponent} from "./components/snackbar/snackbar.component";
+import {SnackbarService} from "./components/snackbar/snackbar.service";
+import {ToastService} from "./components/toast/toast.service";
+import {ToastComponent} from "./components/toast/toast.component";
 
 @NgModule({
     declarations: [
@@ -34,6 +38,8 @@ import {PipesModule} from "./pipes/pipes.module";
         AboutTableComponent,
         SkillsComponent,
         SkillComponent,
+        SnackbarComponent,
+        ToastComponent,
     ],
     imports: [
         BrowserModule,
@@ -47,6 +53,8 @@ import {PipesModule} from "./pipes/pipes.module";
         AppService,
         AuthService,
         MdlService,
+        SnackbarService,
+        ToastService,
     ],
     bootstrap: [
         AppComponent

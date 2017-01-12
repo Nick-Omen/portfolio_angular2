@@ -13,9 +13,6 @@ export class TableComponent implements OnInit {
     @Output() onEdit: EventEmitter<any> = new EventEmitter();
     @Output() onRemove: EventEmitter<any> = new EventEmitter();
 
-    constructor() {
-    }
-
     ngOnInit() {
     }
 

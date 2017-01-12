@@ -26,12 +26,12 @@
                         <span class="mdl-textfield__error"></span>
                     </div>
                     <div class="mdl-textfield mdl-js-textfield">
-                        <select class="mdl-textfield__input" id="work_type" formControlName="work_type" multiple>
-                            <option value="0" selected [attr.disabled]="form.value?.work_type ? true : null">None</option>
+                        <select class="mdl-textfield__input" id="work_type_id" formControlName="work_type_id">
+                            <option value="0" selected [attr.disabled]="form.value?.work_type_id ? true : null">None</option>
                             <option *ngFor="let wt of workTypes"
                                     value="{{wt.id}}">{{wt.name}}</option>
                         </select>
-                        <label class="mdl-textfield__label" for="work_type">Work type</label>
+                        <label class="mdl-textfield__label" for="work_type_id">Work type</label>
                     </div>
                     <button [attr.disabled]="form.valid ? null : 'disabled'"
                             type="submit"
