@@ -3,6 +3,7 @@ import {AppService} from "../app.service";
 import {Http} from "@angular/http";
 
 import "rxjs/add/operator/toPromise";
+import {BehaviorSubject} from "rxjs";
 
 @Injectable()
 export class AuthService {
@@ -10,6 +11,7 @@ export class AuthService {
     username: string;
     email: string;
     url: string = 'auth';
+    isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
     constructor(private globals: AppService,
                 private http: Http) {
@@ -20,11 +22,8 @@ export class AuthService {
             this.token = userInfo.token;
             this.username = userInfo.username;
             this.email = userInfo.email;
+            this.isAuthenticated.next(true);
         }
-    }
-
-    isAuthenticated(): boolean {
-        return !!this.token
     }
 
     getToken(): string {
@@ -63,6 +62,8 @@ export class AuthService {
                     email: jsonRes.email
                 }));
 
+                this.isAuthenticated.next(true);
+
                 return true;
             })
     }
@@ -73,5 +74,6 @@ export class AuthService {
         this.username = '';
         this.email = '';
         window.sessionStorage.removeItem('user_info');
+        this.isAuthenticated.next(false);
     }
 }

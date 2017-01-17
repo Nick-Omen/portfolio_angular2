@@ -33,6 +33,9 @@
                         </select>
                         <label class="mdl-textfield__label" for="work_type_id">Work type</label>
                     </div>
+                    <div>
+                        <input type="file" name="image" formControlName="image">
+                    </div>
                     <button [attr.disabled]="form.valid ? null : 'disabled'"
                             type="submit"
                             class="mdl-button mdl-js-button mdl-button--with-ripple mdl-button--raised mdl-button--accent">Submit</button>

@@ -25,7 +25,8 @@ export class LogoutComponent implements OnInit {
         this.router.navigate(['/']);
 
         this.toastService.showToast({
-            message: "You've successfully logged out."
+            message: "You've successfully logged out.",
+            timeout: 10000
         })
     }
 

@@ -22,7 +22,8 @@ export class SnackbarComponent implements OnInit {
 
                 this.elementRef.nativeElement
                     .querySelector('#snackbar')
-                    .MaterialSnackbar.showSnackbar(snackbar);
+                    .MaterialSnackbar
+                    .showSnackbar(snackbar);
             }
         });
     }

@@ -5,7 +5,6 @@ import "rxjs/add/operator/toPromise";
 import {BaseService} from "../base.service";
 import {AuthService} from "../../auth/auth.service";
 import {Router} from "@angular/router";
-import {Technology} from "./technology";
 
 @Injectable()
 export class TechnologiesService extends BaseService {

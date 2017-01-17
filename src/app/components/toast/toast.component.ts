@@ -22,7 +22,8 @@ export class ToastComponent implements OnInit {
 
                 this.elementRef.nativeElement
                     .querySelector('#toast')
-                    .MaterialSnackbar.showSnackbar(toast);
+                    .MaterialSnackbar
+                    .showSnackbar(toast);
             }
         });
     }

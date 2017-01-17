@@ -6,7 +6,7 @@ import {BehaviorSubject} from "rxjs";
 export class SnackbarService {
     protected snackbarDefaults: SnackbarModel = {
         message: '',
-        timeout: 2000,
+        timeout: 3000,
         actionHandler: () => {},
         actionText: ''
     };

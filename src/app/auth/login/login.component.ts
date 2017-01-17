@@ -3,6 +3,7 @@ import {AuthService} from "../auth.service";
 import {FormBuilder, Validators, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AppService} from "../../app.service";
+import {ToastService} from "../../components/toast/toast.service";
 
 @Component({
     selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
     constructor(private globals: AppService,
                 private authService: AuthService,
                 private formBuilder: FormBuilder,
+                private toastService: ToastService,
                 private router: Router) {
         this.form = formBuilder.group({
             username: ['', Validators.required],
@@ -33,6 +35,11 @@ export class LoginComponent implements OnInit {
             .then(isLogin => {
                 if (isLogin) {
                     this.router.navigate(['/']);
+
+                    this.toastService.showToast({
+                        message: "You've successfully logged in.",
+                        timeout: 10000
+                    })
                 }
             })
             .catch(res => {

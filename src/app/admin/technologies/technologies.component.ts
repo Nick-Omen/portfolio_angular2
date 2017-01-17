@@ -20,16 +20,22 @@ export class TechnologiesComponent implements OnInit {
             name: 'Name',
             key: 'name',
             numeric: false
-        }
+        },
+        {
+            name: 'Work type',
+            key: 'work_type_name',
+            numeric: false
+        },
     ];
 
     constructor(private techService: TechnologiesService,
                 private workTypesService: WorkTypeService,
                 private formBuilder: FormBuilder) {
         this.form = formBuilder.group({
-            id: '',
+            id: null,
             name: [null, Validators.required],
-            work_type_id: [null, Validators.required]
+            work_type_id: [null, Validators.required],
+            image: null
         })
     }
 
@@ -109,6 +115,7 @@ export class TechnologiesComponent implements OnInit {
 
             this.techService.add(this.form.value)
                 .then(technology => {
+
                     this.technologies.push(technology);
                     this.form.reset()
                 })

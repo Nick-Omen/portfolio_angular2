@@ -3,7 +3,7 @@
 <a class="mdl-navigation__link" routerLink="#portfolio" routerLinkActive="is-active">Portfolio</a>
 <a class="mdl-navigation__link" routerLink="#testimonals" routerLinkActive="is-active">Testimonials</a>
 <a class="mdl-navigation__link" routerLink="#contact" routerLinkActive="is-active">Contact</a>
-<a *ngIf="authService.isAuthenticated()" class="mdl-navigation__link" routerLink="/admin" routerLinkActive="is-active">Admin</a>
-<a *ngIf="authService.isAuthenticated()" class="mdl-navigation__link" routerLink="/authorization/logout" routerLinkActive="is-active">Logout</a>
-<a *ngIf="!authService.isAuthenticated()" class="mdl-navigation__link" routerLink="/authorization/signup" routerLinkActive="is-active">Sign Up</a>
-<a *ngIf="!authService.isAuthenticated()" class="mdl-navigation__link" routerLink="/authorization/login" routerLinkActive="is-active">Login</a>
+<a *ngIf="isAuthenticated" class="mdl-navigation__link" routerLink="/admin" routerLinkActive="is-active">Admin</a>
+<a *ngIf="isAuthenticated" class="mdl-navigation__link" routerLink="/authorization/logout" routerLinkActive="is-active">Logout</a>
+<a *ngIf="!isAuthenticated" class="mdl-navigation__link" routerLink="/authorization/signup" routerLinkActive="is-active">Sign Up</a>
+<a *ngIf="!isAuthenticated" class="mdl-navigation__link" routerLink="/authorization/login" routerLinkActive="is-active">Login</a>

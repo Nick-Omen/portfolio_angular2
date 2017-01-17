@@ -5,7 +5,8 @@ import {BehaviorSubject} from "rxjs";
 @Injectable()
 export class ToastService {
     protected toastDefaults: ToastModel = {
-        message: ''
+        message: '',
+        timeout: 3000
     };
     toastData: BehaviorSubject<ToastModel> = new BehaviorSubject(this.toastDefaults);
 

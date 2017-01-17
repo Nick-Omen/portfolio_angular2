@@ -38,6 +38,9 @@ import {AuthModule} from "../auth/auth.module";
         PipesModule,
         AuthModule,
     ],
+    exports: [
+        AdminNavigationComponent,
+    ],
     providers: [
         CanActivateViaAuthGuard,
         AuthService,
