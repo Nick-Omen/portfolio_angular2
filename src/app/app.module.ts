@@ -24,6 +24,8 @@ import {SnackbarComponent} from "./components/snackbar/snackbar.component";
 import {SnackbarService} from "./components/snackbar/snackbar.service";
 import {ToastService} from "./components/toast/toast.service";
 import {ToastComponent} from "./components/toast/toast.component";
+import {ToolsComponent} from "./blocks/tools/tools.component";
+import {SliderModule} from "./slider/slider.module";
 
 @NgModule({
     declarations: [
@@ -40,6 +42,7 @@ import {ToastComponent} from "./components/toast/toast.component";
         SkillComponent,
         SnackbarComponent,
         ToastComponent,
+        ToolsComponent,
     ],
     imports: [
         BrowserModule,
@@ -48,6 +51,7 @@ import {ToastComponent} from "./components/toast/toast.component";
         AdminModule,
         PipesModule,
         AuthModule,
+        SliderModule,
     ],
     providers: [
         AppService,
