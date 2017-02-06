@@ -9,14 +9,18 @@ export class SliderPipe implements PipeTransform {
     transform(value: any, from: number, to: number): any {
 
         if (!value) {
-            return null;
+            return [];
         }
 
-        if (!from || !to) {
+        if (value.length <= 2) {
+            return value;
+        }
+
+        if (!from.toString() || !to.toString()) {
             return value.slice(0, 2);
         }
 
-        return value.slice(from, to);
+        return [value[from], value[to]];
     }
 
 }

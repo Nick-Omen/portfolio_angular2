@@ -6,7 +6,9 @@
                          class="pf-slider__card"></app-slider-card>
     </div>
     <div class="mdl-cell mdl-cell--4-col">
-        <app-slider-controls (slide)="changeSlide($event)"></app-slider-controls>
+        <app-slider-controls (slide)="changeSlide($event)"
+                             [slidesNames]="slidesNames"
+                             [activeSlides]="activeSlides"></app-slider-controls>
     </div>
 </div>
 <div *ngIf="!initialized">Loading...</div>

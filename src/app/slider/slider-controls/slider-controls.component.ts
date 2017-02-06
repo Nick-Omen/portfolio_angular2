@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 
 @Component({
     selector: 'app-slider-controls',
@@ -7,15 +7,24 @@ import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 })
 export class SliderControlsComponent implements OnInit {
 
-    @Output() slide: EventEmitter<string> = new EventEmitter();
-    constructor() {
-    }
+    slideIndexes: number[] = [];
+
+    @Input() slidesNames: string[] = [];
+    @Input() activeSlides: number[] = [];
+    @Output() slide: EventEmitter<string | number> = new EventEmitter();
 
     ngOnInit() {
     }
 
-    slideTo(direction: string) {
+    ngOnChanges(changes) {
+        if (changes.slidesNames && changes.slidesNames.currentValue) {
+            this.slideIndexes.length = 0;
+            changes.slidesNames.currentValue.map((n, i) => this.slideIndexes.push(i));
+        }
+    }
 
-        this.slide.emit(direction);
+    slideTo(name: string | number) {
+
+        this.slide.emit(name);
     }
 }

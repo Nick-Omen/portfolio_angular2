@@ -1,2 +1,10 @@
 <button (click)="slideTo('left')">left</button>
 <button (click)="slideTo('right')">right</button>
+
+<hr>
+<ul *ngIf="slidesNames" class="slider-controls__dots">
+    <li *ngFor="let index of slideIndexes"
+        [ngClass]="{'slider-controls__dot': true, 'is-active': activeSlides.indexOf(index) !== -1}"
+        title="{{slidesNames[index]}}"
+        (click)="slideTo(index)">{{slidesNames[index][0]}}</li>
+</ul>
