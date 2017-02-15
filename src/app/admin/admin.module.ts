@@ -19,6 +19,7 @@ import {WorksService} from "./works/works.service";
 import {TechnologiesService} from "./technologies/technologies.service";
 import {WorkTypeService} from "./work-type.service";
 import {AuthModule} from "../auth/auth.module";
+import {ImageUploadComponent} from "./image-upload/image-upload.component";
 
 @NgModule({
     declarations: [
@@ -29,6 +30,7 @@ import {AuthModule} from "../auth/auth.module";
         AdminNavigationComponent,
         StatisticsComponent,
         TableComponent,
+        ImageUploadComponent,
     ],
     imports: [
         CommonModule,

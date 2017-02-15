@@ -1,0 +1,22 @@
+<section class="pf-section pf-portfolio">
+
+    <div class="pf-portfolio__header-container">
+        <div class="pf-container">
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--12-col">
+                    <h3 class="mdl-typography--header pf-portfolio__header">Portfolio</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pf-container">
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--12-col">
+                <app-portfolio-card *ngFor="let portfolio of portfolioItems"
+                                    [item]="portfolio"></app-portfolio-card>
+                <div *ngIf="!portfolioItems.length">No items added.</div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -26,6 +26,8 @@ import {ToastService} from "./components/toast/toast.service";
 import {ToastComponent} from "./components/toast/toast.component";
 import {ToolsComponent} from "./blocks/tools/tools.component";
 import {SliderModule} from "./slider/slider.module";
+import {PortfolioComponent} from "./blocks/portfolio/portfolio.component";
+import {PortfolioCardComponent} from "./components/portfolio-card/portfolio-card.component";
 
 @NgModule({
     declarations: [
@@ -43,6 +45,8 @@ import {SliderModule} from "./slider/slider.module";
         SnackbarComponent,
         ToastComponent,
         ToolsComponent,
+        PortfolioComponent,
+        PortfolioCardComponent,
     ],
     imports: [
         BrowserModule,
