@@ -1,0 +1,27 @@
+@import "../../../assets/sass/variables"
+@import "../../../assets/sass/mixins"
+
+.pf-add-item
+  position: fixed
+  bottom: 32px
+  right: 32px
+  z-index: 9000
+
+  &.is-hidden
+    display: none
+
+.pf-panel
+  position: fixed
+  top: 0
+  right: 0
+  width: 50%
+  height: 100%
+  z-index: 8000
+  background: #{"rgb(#{$color-white})"}
+  display: none
+  padding: $spacer*2 $spacer
+  overflow: auto
+  +shadow-4dp()
+
+  &.is-opened
+    display: block

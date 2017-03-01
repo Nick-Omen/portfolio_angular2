@@ -1,19 +1,8 @@
 <div class="pf-container">
     <div class="mdl-grid">
         <div class="mdl-cell mdl-cell--12-col">
-            <app-admin-table
-                [formModel]="languageFormModel"
-                [items]="languages"
-                (onEdit)="editLanguage($event)"
-                (onRemove)="removeLanguage($event)"
-                (onRefresh)="reloadLanguages()"></app-admin-table>
-            <div [ngClass]="{'pf-form-box': true, 'mdl-typography--text-right': !addItem}">
-                <button *ngIf="!addItem"
-                        type="button"
-                        class="mdl-button mdl-js-button mdl-button--with-ripple"
-                        (click)="triggerForm()">Add item</button>
-                <form *ngIf="addItem"
-                      class="pf-form"
+            <app-panel>
+                <form class="pf-form"
                       [formGroup]="form"
                       (submit)="formSubmit($event)">
                     <h3 class="mdl-typography--header">
@@ -37,12 +26,20 @@
                     </div>
                     <button [attr.disabled]="form.valid ? null : 'disabled'"
                             type="submit"
-                            class="mdl-button mdl-js-button mdl-button--with-ripple mdl-button--raised mdl-button--accent">Submit</button>
-                    <button (click)="closeForm()"
+                            class="mdl-button mdl-js-button mdl-button--with-ripple mdl-button--raised mdl-button--accent">Submit
+                    </button>
+                    <button (click)="closePanel()"
                             type="button"
-                            class="mdl-button mdl-js-button mdl-button--with-ripple">Cancel</button>
+                            class="mdl-button mdl-js-button mdl-button--with-ripple">Cancel
+                    </button>
                 </form>
-            </div>
+            </app-panel>
+            <app-admin-table
+                    [formModel]="languageFormModel"
+                    [items]="languages"
+                    (onEdit)="editLanguage($event)"
+                    (onRemove)="removeLanguage($event)"
+                    (onRefresh)="reloadLanguages()"></app-admin-table>
         </div>
     </div>
 </div>

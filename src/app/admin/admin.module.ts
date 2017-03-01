@@ -20,6 +20,8 @@ import {TechnologiesService} from "./technologies/technologies.service";
 import {WorkTypeService} from "./work-type.service";
 import {AuthModule} from "../auth/auth.module";
 import {ImageUploadComponent} from "./image-upload/image-upload.component";
+import {PanelComponent} from "./panel/panel.component";
+import {PanelService} from "./panel/panel.service";
 
 @NgModule({
     declarations: [
@@ -30,6 +32,7 @@ import {ImageUploadComponent} from "./image-upload/image-upload.component";
         AdminNavigationComponent,
         StatisticsComponent,
         TableComponent,
+        PanelComponent,
         ImageUploadComponent,
     ],
     imports: [
@@ -50,6 +53,7 @@ import {ImageUploadComponent} from "./image-upload/image-upload.component";
         WorksService,
         TechnologiesService,
         WorkTypeService,
+        PanelService,
     ],
 })
 export class AdminModule {

@@ -1,0 +1,11 @@
+<button [ngClass]="{
+            'mdl-button mdl-js-button mdl-button--fab mdl-button--colored pf-add-item': true,
+            'is-hidden': panelOpened
+        }"
+        (click)="panelHandler()">
+    <i class="material-icons">add</i>
+</button>
+
+<div [ngClass]="{'pf-panel': true, 'is-opened': panelOpened}">
+    <ng-content></ng-content>
+</div>
