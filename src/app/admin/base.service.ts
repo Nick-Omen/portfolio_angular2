@@ -3,6 +3,7 @@ import {Http, Headers, RequestOptions} from "@angular/http";
 import {AppService} from "../app.service";
 import {AuthService} from "../auth/auth.service";
 import {Router} from "@angular/router";
+import {Observable} from "rxjs";
 
 @Injectable()
 export class BaseService {
@@ -20,8 +21,6 @@ export class BaseService {
         const token = this.authService.getToken();
         let headers = new Headers();
 
-        headers.append('Content-Type', 'application/json');
-
         if (token) {
 
             headers.append('Authorization', 'Token ' + token);
@@ -37,6 +36,21 @@ export class BaseService {
         })
     }
 
+    patchFormDataWithImage(formData, fileName: string, fileList: FileList) {
+
+        if (fileName && fileList.length > 0) {
+            let newFormData = new FormData();
+            for (let dKey in formData) {
+                if (formData.hasOwnProperty(dKey)) {
+                    newFormData.append(dKey, formData[dKey]);
+                }
+            }
+            newFormData.append(fileName, fileList[0]);
+            return newFormData;
+        }
+        return formData;
+    }
+
     get(): Promise<any> {
 
         const url = `${this.globals.apiUrl}/${this.url}/`;
@@ -47,7 +61,9 @@ export class BaseService {
             .catch(this.errorHandler)
     }
 
-    add(formData): Promise<any> {
+    add(formData, fileName: string, fileList: FileList): Promise<any> {
+
+        formData = this.patchFormDataWithImage(formData, fileName, fileList);
 
         const url = `${this.globals.apiUrl}/${this.url}/`;
 
@@ -57,9 +73,12 @@ export class BaseService {
             .catch(this.errorHandler)
     }
 
-    modify(formData): Promise<any> {
+    modify(formData, fileName: string, fileList: FileList): Promise<any> {
 
-        const url = `${this.globals.apiUrl}/${this.url}/${formData.id}/`;
+        formData = this.patchFormDataWithImage(formData, fileName, fileList);
+        let id = formData.id || formData.get('id');
+
+        const url = `${this.globals.apiUrl}/${this.url}/${id}/`;
 
         return this.http.put(url, formData, this.getRequestOptions())
             .toPromise()

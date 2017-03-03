@@ -3,4 +3,5 @@ export class Language {
     name: string;
     skill_level: number;
     experience: string;
+    image: any
 }

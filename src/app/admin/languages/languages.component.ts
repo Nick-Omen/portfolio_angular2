@@ -15,7 +15,9 @@ import {ToastService} from "../../components/toast/toast.service";
 export class LanguagesComponent implements OnInit {
 
     languages: Language[] = [];
+    languageImageSrc: string = '';
     form: FormGroup;
+    files: any;
     languageFormModel: Array<any> = [
         {
             name: 'Name',
@@ -63,6 +65,10 @@ export class LanguagesComponent implements OnInit {
         this.loadLanguages();
     }
 
+    onFileChange(files) {
+        this.files = files;
+    }
+
     loadLanguages() {
 
         this.languagesService.get()
@@ -87,7 +93,7 @@ export class LanguagesComponent implements OnInit {
     }
 
     addLanguage(formData: Language) {
-        this.languagesService.add(formData)
+        this.languagesService.add(formData, 'image', this.files)
             .then(language => {
                 this.lastState = {
                     method: "add",
@@ -109,7 +115,7 @@ export class LanguagesComponent implements OnInit {
     }
 
     modifyLanguage(formData: Language, canUndo: boolean = false) {
-        this.languagesService.modify(formData)
+        this.languagesService.modify(formData, 'image', this.files)
             .then(language => {
                 this.languages = this.languages.map(l => {
                     if (l.id === language.id) {
@@ -117,7 +123,7 @@ export class LanguagesComponent implements OnInit {
                     }
                     return l;
                 });
-
+                this.languageImageSrc = '';
                 this.closePanel();
                 if (canUndo) {
 
@@ -180,6 +186,7 @@ export class LanguagesComponent implements OnInit {
     editLanguage(language: Language) {
 
         this.form.patchValue(language);
+        this.languageImageSrc = language.image;
         this.panelService.open();
     }
 

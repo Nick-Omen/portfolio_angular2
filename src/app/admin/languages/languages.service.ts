@@ -4,7 +4,6 @@ import {AppService} from "../../app.service";
 import "rxjs/add/operator/toPromise";
 import {BaseService} from "../base.service";
 import {AuthService} from "../../auth/auth.service";
-import {Language} from "./language";
 import {Router} from "@angular/router";
 
 @Injectable()

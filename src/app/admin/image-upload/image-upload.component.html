@@ -1,3 +1,5 @@
-<p>
-  image-upload works!
-</p>
+<label [ngClass]="{'pf-image-upload': true, 'image-preview': canvasShow}">
+    <input (change)="inputChange($event)" type="file" name="file">
+    {{!canvasShow ? label : ''}}
+    <canvas [ngClass]="{'hidden': !canvasShow}"></canvas>
+</label>

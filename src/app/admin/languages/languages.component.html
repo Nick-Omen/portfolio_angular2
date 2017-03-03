@@ -24,6 +24,9 @@
                         <label class="mdl-textfield__label" for="experience">Experience from</label>
                         <span class="mdl-textfield__error">01-01-2015</span>
                     </div>
+                    <app-image-upload [label]="'Click to upload logo'"
+                                      [imageSrc]="languageImageSrc"
+                                      (onFile)="onFileChange($event)"></app-image-upload>
                     <button [attr.disabled]="form.valid ? null : 'disabled'"
                             type="submit"
                             class="mdl-button mdl-js-button mdl-button--with-ripple mdl-button--raised mdl-button--accent">Submit

@@ -14,12 +14,13 @@
   position: fixed
   top: 0
   right: 0
-  width: 50%
+  width: 100%
+  max-width: (300px + $spacer*2) * 2
   height: 100%
   z-index: 8000
   background: #{"rgb(#{$color-white})"}
   display: none
-  padding: $spacer*2 $spacer
+  padding: ($spacer*2)
   overflow: auto
   +shadow-4dp()
 
